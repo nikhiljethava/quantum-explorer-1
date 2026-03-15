@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Fit Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
+
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Quantum Fit Explorer</p>
+        <h1>Help anyone decide when quantum computing is worth exploring.</h1>
+        <p class="hero-copy">
+          This prototype translates a business or technical problem into a
+          practical recommendation: stay classical, test a hybrid approach, or
+          investigate a quantum path for longer-term value.
+        </p>
+        <div class="hero-actions">
+          <a href="#explorer" class="button primary">Try the explorer</a>
+          <a href="#examples" class="button secondary">See example scenarios</a>
+        </div>
+      </section>
+
+      <section class="panel explorer" id="explorer">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Guided assessment</p>
+            <h2>Describe the problem you want to evaluate</h2>
+          </div>
+          <p class="panel-note">
+            The app uses a transparent rubric so novices can see why a
+            recommendation was made.
+          </p>
+        </div>
+
+        <div class="grid">
+          <form id="assessment-form" class="form-card">
+            <label>
+              Problem statement
+              <textarea
+                id="problemStatement"
+                name="problemStatement"
+                rows="5"
+                placeholder="Example: We want to optimize delivery routes across 2,000 stops with changing traffic and strict time windows."
+              ></textarea>
+            </label>
+
+            <div class="two-column">
+              <label>
+                Problem family
+                <select id="problemFamily" name="problemFamily">
+                  <option value="optimization">Optimization</option>
+                  <option value="chemistry">Chemistry or materials simulation</option>
+                  <option value="machine-learning">Machine learning</option>
+                  <option value="cryptography">Cryptography or security analysis</option>
+                  <option value="search">Search or sampling</option>
+                  <option value="other">Other / not sure</option>
+                </select>
+              </label>
+
+              <label>
+                Horizon
+                <select id="timeHorizon" name="timeHorizon">
+                  <option value="today">Needs value on current hardware</option>
+                  <option value="pilot">Can support a research pilot</option>
+                  <option value="long-term">Exploring long-term strategic bets</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="two-column">
+              <label>
+                How well do classical methods work today?
+                <select id="classicalStrength" name="classicalStrength">
+                  <option value="strong">They work well enough already</option>
+                  <option value="mixed">They work, but performance is limited</option>
+                  <option value="weak">They struggle badly on this problem</option>
+                </select>
+              </label>
+
+              <label>
+                What matters most?
+                <select id="primaryGoal" name="primaryGoal">
+                  <option value="speed">Faster runtime</option>
+                  <option value="quality">Better solution quality</option>
+                  <option value="simulation">More accurate physical simulation</option>
+                  <option value="learning">Learning and exploration</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="two-column">
+              <label>
+                Problem structure
+                <select id="problemStructure" name="problemStructure">
+                  <option value="high">Highly structured and mathematically clear</option>
+                  <option value="medium">Some structure, some messy real-world constraints</option>
+                  <option value="low">Mostly unstructured or fuzzy</option>
+                </select>
+              </label>
+
+              <label>
+                Error tolerance
+                <select id="errorTolerance" name="errorTolerance">
+                  <option value="low">Low tolerance for approximation or noise</option>
+                  <option value="medium">Some approximation is acceptable</option>
+                  <option value="high">Approximate answers are fine</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="two-column">
+              <label>
+                Data at hand
+                <select id="dataForm" name="dataForm">
+                  <option value="symbolic">Mathematical model / symbolic formulation</option>
+                  <option value="graph">Graph or combinatorial structure</option>
+                  <option value="tabular">Tabular business data</option>
+                  <option value="messy">Messy text, images, logs, or mixed data</option>
+                </select>
+              </label>
+
+              <label>
+                Team readiness
+                <select id="teamReadiness" name="teamReadiness">
+                  <option value="low">Novice team, little quantum knowledge</option>
+                  <option value="medium">Some research capacity</option>
+                  <option value="high">Strong research team and experimentation budget</option>
+                </select>
+              </label>
+            </div>
+
+            <button type="submit" class="button primary full-width">
+              Generate recommendation
+            </button>
+          </form>
+
+          <article class="result-card" id="resultCard" aria-live="polite">
+            <p class="eyebrow">Recommendation</p>
+            <div class="badge" id="recommendationBadge">Awaiting input</div>
+            <h3 id="recommendationTitle">Start with the assessment.</h3>
+            <p id="recommendationSummary">
+              The recommendation will explain whether this looks like a
+              classical, hybrid, or quantum-forward candidate.
+            </p>
+
+            <div class="meter">
+              <div>
+                <span>Classical fit</span>
+                <strong id="classicalScore">0</strong>
+              </div>
+              <div>
+                <span>Hybrid fit</span>
+                <strong id="hybridScore">0</strong>
+              </div>
+              <div>
+                <span>Quantum fit</span>
+                <strong id="quantumScore">0</strong>
+              </div>
+            </div>
+
+            <div class="insight-block">
+              <h4>Why this recommendation?</h4>
+              <ul id="reasonList"></ul>
+            </div>
+
+            <div class="insight-block">
+              <h4>Suggested next step</h4>
+              <p id="nextStep">
+                Fill out the form to get an initial product-style recommendation.
+              </p>
+            </div>
+
+            <div class="insight-block">
+              <h4>Explain like I'm new to this</h4>
+              <p id="noviceExplanation">
+                Quantum computers are not general-purpose faster computers. They
+                matter for a narrow set of problems with the right structure and
+                long-term hardware assumptions.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel examples" id="examples">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Scenario library</p>
+            <h2>Examples that teach the nuance</h2>
+          </div>
+        </div>
+
+        <div class="example-grid" id="exampleGrid"></div>
+      </section>
+
+      <section class="panel glossary">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Glossary</p>
+            <h2>Terms novices usually need right away</h2>
+          </div>
+        </div>
+        <div class="glossary-grid" id="glossaryGrid"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
