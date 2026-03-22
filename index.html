@@ -46,6 +46,21 @@
         </div>
       </section>
 
+      <section class="panel examples-panel" id="examples">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Examples first</p>
+            <h2>Start with a scenario that feels familiar</h2>
+          </div>
+          <p class="panel-note">
+            If you are not sure how to describe your problem yet, begin with one
+            of these examples and adjust from there.
+          </p>
+        </div>
+
+        <div class="example-grid" id="exampleGrid"></div>
+      </section>
+
       <section class="panel quiz-panel" id="quiz">
         <div class="panel-header">
           <div>
@@ -134,6 +149,34 @@
             answer and explain why.
           </p>
 
+          <div class="visualization-card">
+            <div class="visualization-header">
+              <h4>Where this sits on the journey</h4>
+              <span id="visualizationLabel">Waiting for your answers</span>
+            </div>
+            <div class="journey-track" id="journeyTrack">
+              <div class="journey-step" data-step="classical">
+                <strong>1</strong>
+                <span>Stay classical</span>
+              </div>
+              <div class="journey-line"></div>
+              <div class="journey-step" data-step="learn">
+                <strong>2</strong>
+                <span>Learn more</span>
+              </div>
+              <div class="journey-line"></div>
+              <div class="journey-step" data-step="hybrid">
+                <strong>3</strong>
+                <span>Small hybrid pilot</span>
+              </div>
+              <div class="journey-line"></div>
+              <div class="journey-step" data-step="later">
+                <strong>4</strong>
+                <span>Long-term quantum watch</span>
+              </div>
+            </div>
+          </div>
+
           <div class="result-grid">
             <div class="insight-block">
               <h4>Why this answer?</h4>
@@ -180,17 +223,6 @@
             </p>
           </article>
         </div>
-      </section>
-
-      <section class="panel examples-panel" id="examples">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Examples</p>
-            <h2>Common beginner scenarios</h2>
-          </div>
-        </div>
-
-        <div class="example-grid" id="exampleGrid"></div>
       </section>
 
       <section class="panel glossary-panel">

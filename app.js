@@ -123,6 +123,7 @@ const els = {
   recommendationBadge: document.getElementById("recommendationBadge"),
   recommendationTitle: document.getElementById("recommendationTitle"),
   recommendationSummary: document.getElementById("recommendationSummary"),
+  visualizationLabel: document.getElementById("visualizationLabel"),
   reasonList: document.getElementById("reasonList"),
   nextStep: document.getElementById("nextStep"),
   simpleExplanation: document.getElementById("simpleExplanation"),
@@ -221,6 +222,20 @@ function renderRecommendation(result) {
   els.simpleExplanation.textContent = recommendation.simpleExplanation;
   els.classicalExplanation.textContent = recommendation.classicalExplanation;
   els.laterExplanation.textContent = recommendation.laterExplanation;
+  els.visualizationLabel.textContent = recommendation.label;
+
+  document.querySelectorAll(".journey-step").forEach((step, index) => {
+    step.classList.remove("active", "complete");
+    const stepKey = step.dataset.step;
+    if (stepKey === result.key) {
+      step.classList.add("active");
+    }
+
+    const order = ["classical", "learn", "hybrid", "later"];
+    if (order.indexOf(stepKey) < order.indexOf(result.key)) {
+      step.classList.add("complete");
+    }
+  });
 
   els.reasonList.innerHTML = "";
   result.reasons.forEach((reason) => {
@@ -254,7 +269,7 @@ function renderExamples() {
       setFormData(scenario.data);
       renderRecommendation(getRecommendation(scenario.data));
       document
-        .getElementById("quiz")
+        .getElementById("result")
         .scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
