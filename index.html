@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hybrid Quantum Workload Navigator</title>
+    <title>Quantum Explorer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,566 +15,193 @@
   <body>
     <div class="background-orb orb-one"></div>
     <div class="background-orb orb-two"></div>
-    <div class="background-grid"></div>
 
     <main class="page">
-      <header class="topbar">
-        <a class="brand" href="#top">
-          <span class="brand-mark">Q</span>
-          <span>
-            <strong>Hybrid Quantum Workload Navigator</strong>
-            <small>local MVP</small>
-          </span>
-        </a>
-
-        <nav class="topnav">
-          <a href="#workspace">Workspace</a>
-          <a href="#fit-report">Fit report</a>
-          <a href="#prototype-studio">Prototype</a>
-          <a href="#exports">Exports</a>
-        </nav>
-
-        <button class="button secondary mode-toggle" id="modeToggle" type="button">
-          Executive mode
-        </button>
+      <header class="hero">
+        <p class="eyebrow">Quantum Explorer</p>
+        <h1>Understand when quantum computing matters and when it does not.</h1>
+        <p class="hero-copy">
+          This version is built for business users and beginners. Answer a few
+          simple questions and get a plain-English recommendation.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#quiz">Start the guide</a>
+          <a class="button secondary" href="#examples">See examples</a>
+        </div>
       </header>
 
-      <section class="hero" id="top">
-        <div class="hero-copy-block">
-          <p class="eyebrow">Product demo</p>
-          <h1>Turn quantum curiosity into a grounded workload decision.</h1>
-          <p class="hero-copy">
-            This app helps a field team, PM, or novice builder understand what
-            should stay classical, what might become a narrow quantum
-            subroutine, and what can be prototyped honestly today.
-          </p>
-        </div>
-
-        <div class="hero-summary">
-          <div class="summary-card">
-            <span class="summary-label">Disposition engine</span>
-            <strong id="heroDisposition">No assessment yet</strong>
-            <p id="heroDispositionCopy">
-              Run the guided intake to generate a classical-only,
-              education-only, hybrid-prototype, or future fault-tolerant view.
-            </p>
-          </div>
-          <div class="summary-card">
-            <span class="summary-label">Current mode</span>
-            <strong id="heroMode">Executive</strong>
+      <section class="panel intro-panel">
+        <div class="mini-grid">
+          <article class="mini-card">
+            <span class="mini-label">What this helps with</span>
+            <h2>Should this problem stay classical, use a small hybrid pilot, or be watched as a long-term quantum opportunity?</h2>
+          </article>
+          <article class="mini-card">
+            <span class="mini-label">What this does not do</span>
             <p>
-              Executive mode keeps the language clear. Builder mode reveals the
-              scoring model, workflow graph assumptions, and artifact structure.
+              It does not try to be a technical design tool. It gives a beginner
+              a grounded first answer without jargon.
             </p>
-          </div>
+          </article>
         </div>
       </section>
 
-      <section class="panel workspace-panel" id="workspace">
+      <section class="panel quiz-panel" id="quiz">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Workspace</p>
-            <h2>Start with the real workload, not qubits</h2>
+            <p class="eyebrow">Step 1</p>
+            <h2>Tell us about the problem</h2>
           </div>
           <p class="panel-note">
-            The form below captures enough context to make a transparent
-            recommendation and generate a reusable prototype package.
+            Keep it simple. The app is trying to understand your business goal,
+            not test your quantum knowledge.
           </p>
         </div>
 
-        <div class="workspace-layout">
-          <aside class="session-sidebar">
-            <article class="sidebar-card">
-              <p class="eyebrow">Session status</p>
-              <h3 id="sessionTitlePreview">Untitled session</h3>
-              <p id="sessionSummaryCopy">
-                No scenario assessed yet. Fill in the intake and run the fit
-                assessment.
+        <form id="assessment-form" class="simple-form">
+          <label>
+            What are you trying to do?
+            <textarea
+              id="businessGoal"
+              name="businessGoal"
+              rows="4"
+              placeholder="Example: We want to find better battery materials, improve delivery route planning, or understand whether a difficult simulation problem could benefit from quantum computing."
+            ></textarea>
+          </label>
+
+          <div class="two-column">
+            <label>
+              Which option sounds closest to your problem?
+              <select id="problemType" name="problemType">
+                <option value="materials">Chemistry, materials, or physical simulation</option>
+                <option value="optimization">Optimization, scheduling, or routing</option>
+                <option value="cryptography">Cryptography or security research</option>
+                <option value="analytics">AI, analytics, or messy business data</option>
+                <option value="general">General business software or process improvement</option>
+                <option value="unsure">I am not sure</option>
+              </select>
+            </label>
+
+            <label>
+              How well do current tools work today?
+              <select id="classicalFit" name="classicalFit">
+                <option value="strong">They work well enough already</option>
+                <option value="mixed">They work partly, but we still struggle</option>
+                <option value="weak">They struggle badly on the core problem</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="two-column">
+            <label>
+              When do you need value?
+              <select id="timeNeed" name="timeNeed">
+                <option value="now">We need practical value now</option>
+                <option value="pilot">A small pilot this year is fine</option>
+                <option value="later">This is a longer-term strategic bet</option>
+              </select>
+            </label>
+
+            <label>
+              Can you isolate a small part of the problem to test separately?
+              <select id="subproblem" name="subproblem">
+                <option value="yes">Yes</option>
+                <option value="maybe">Maybe</option>
+                <option value="no">No</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button class="button primary" type="submit">Show my recommendation</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel result-panel" id="result">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Step 2</p>
+            <h2>Your recommendation</h2>
+          </div>
+        </div>
+
+        <article class="result-card">
+          <div class="badge" id="recommendationBadge">Answer a few questions first</div>
+          <h3 id="recommendationTitle">No recommendation yet</h3>
+          <p id="recommendationSummary">
+            After you complete the guide, the app will give you one simple
+            answer and explain why.
+          </p>
+
+          <div class="result-grid">
+            <div class="insight-block">
+              <h4>Why this answer?</h4>
+              <ul id="reasonList"></ul>
+            </div>
+            <div class="insight-block">
+              <h4>What should you do next?</h4>
+              <p id="nextStep">
+                Start with the short guide above.
               </p>
-              <div class="pill-row">
-                <span class="pill" id="currentPersona">Persona: R&D lead</span>
-                <span class="pill" id="currentGoal">Goal: Fit assessment</span>
-              </div>
-            </article>
-
-            <article class="sidebar-card">
-              <div class="card-heading">
-                <div>
-                  <p class="eyebrow">Recent sessions</p>
-                  <h3>Saved locally</h3>
-                </div>
-                <button class="button secondary compact" type="button" id="clearSessionsButton">
-                  Clear
-                </button>
-              </div>
-              <div class="session-list" id="sessionList"></div>
-            </article>
-
-            <article class="sidebar-card">
-              <p class="eyebrow">Scenario library</p>
-              <div class="example-grid sidebar-examples" id="exampleGrid"></div>
-            </article>
-          </aside>
-
-          <div class="main-stack">
-            <form id="assessment-form" class="form-card">
-              <div class="card-heading">
-                <div>
-                  <p class="eyebrow">Guided intake</p>
-                  <h3>Workload setup</h3>
-                </div>
-                <div class="completion-chip">
-                  <span>Completeness</span>
-                  <strong id="completenessValue">0%</strong>
-                </div>
-              </div>
-
-              <div class="two-column">
-                <label>
-                  Session name
-                  <input
-                    id="sessionName"
-                    name="sessionName"
-                    type="text"
-                    placeholder="Battery electrolyte screening - hybrid assessment"
-                  />
-                </label>
-
-                <label>
-                  Session goal
-                  <select id="sessionGoal" name="sessionGoal">
-                    <option value="fit_assessment">Workload fit assessment</option>
-                    <option value="education_briefing">Education briefing</option>
-                    <option value="prototype_builder">Prototype builder</option>
-                  </select>
-                </label>
-              </div>
-
-              <div class="three-column">
-                <label>
-                  Persona
-                  <select id="persona" name="persona">
-                    <option value="r_and_d_lead">Enterprise R&D lead</option>
-                    <option value="field_architect">Field solution architect</option>
-                    <option value="quantum_pm">Quantum PM / specialist engineer</option>
-                    <option value="research_partner">Research partner</option>
-                  </select>
-                </label>
-
-                <label>
-                  Industry
-                  <select id="industry" name="industry">
-                    <option value="materials">Materials / chemistry</option>
-                    <option value="logistics">Logistics</option>
-                    <option value="finance">Finance</option>
-                    <option value="energy">Energy</option>
-                    <option value="research">Research lab</option>
-                    <option value="other">Other</option>
-                  </select>
-                </label>
-
-                <label>
-                  Time horizon
-                  <select id="timeHorizon" name="timeHorizon">
-                    <option value="production_now">Needs value on today's infrastructure</option>
-                    <option value="pilot">A research pilot is acceptable</option>
-                    <option value="prototype_now">Simulation-first prototype is fine</option>
-                    <option value="fault_tolerant_later">Long-term strategic exploration</option>
-                  </select>
-                </label>
-              </div>
-
-              <label>
-                Business or scientific objective
-                <textarea
-                  id="businessObjective"
-                  name="businessObjective"
-                  rows="4"
-                  placeholder="Example: Evaluate whether a quantum-assisted workflow could help us study a small but high-value electronic-structure subproblem inside our electrolyte screening pipeline."
-                ></textarea>
-              </label>
-
-              <div class="two-column">
-                <label>
-                  Problem family
-                  <select id="problemFamily" name="problemFamily">
-                    <option value="chemistry_materials">Chemistry and materials</option>
-                    <option value="optimization">Optimization</option>
-                    <option value="physics_dynamics">Physics / dynamics</option>
-                    <option value="quantum_ml">Quantum ML</option>
-                    <option value="business_analytics">Business analytics</option>
-                  </select>
-                </label>
-
-                <label>
-                  Representation
-                  <select id="representation" name="representation">
-                    <option value="molecule">Molecule / active space</option>
-                    <option value="hamiltonian">Hamiltonian / lattice model</option>
-                    <option value="graph">Constraint graph / QUBO / routing graph</option>
-                    <option value="tabular">Tabular features / KPI model</option>
-                    <option value="unstructured">Unstructured text, image, or logs</option>
-                  </select>
-                </label>
-              </div>
-
-              <label>
-                Current baseline
-                <textarea
-                  id="currentBaseline"
-                  name="currentBaseline"
-                  rows="3"
-                  placeholder="Example: Classical DFT pipeline plus screening heuristics and lab validation."
-                ></textarea>
-              </label>
-
-              <div class="two-column">
-                <label>
-                  Current bottleneck
-                  <textarea
-                    id="currentBottleneck"
-                    name="currentBottleneck"
-                    rows="3"
-                    placeholder="Where do runtime, cost, or scientific limits show up?"
-                  ></textarea>
-                </label>
-
-                <label>
-                  Success metric
-                  <textarea
-                    id="successMetric"
-                    name="successMetric"
-                    rows="3"
-                    placeholder="What would make this exploration useful?"
-                  ></textarea>
-                </label>
-              </div>
-
-              <div class="three-column">
-                <label>
-                  Classical baseline strength
-                  <select id="classicalBaselineStrength" name="classicalBaselineStrength">
-                    <option value="-2">Classical methods already work well</option>
-                    <option value="-1">Classical baseline is adequate</option>
-                    <option value="0">Mixed picture</option>
-                    <option value="1">Classical approach is materially limited</option>
-                    <option value="2">Classical approach is clearly inadequate</option>
-                  </select>
-                </label>
-
-                <label>
-                  Problem structure
-                  <select id="problemStructure" name="problemStructure">
-                    <option value="-2">Loosely defined or process-heavy</option>
-                    <option value="-1">Partially structured</option>
-                    <option value="0">Some formal structure</option>
-                    <option value="1">Well-defined graph, model, or subproblem</option>
-                    <option value="2">Strongly structured scientific problem</option>
-                  </select>
-                </label>
-
-                <label>
-                  Verification tolerance
-                  <select id="verificationTolerance" name="verificationTolerance">
-                    <option value="-2">Production-grade validation required now</option>
-                    <option value="-1">Heavy operational guarantees required</option>
-                    <option value="0">Moderate experimental tolerance</option>
-                    <option value="1">Exploratory prototype is acceptable</option>
-                    <option value="2">Research-oriented session is fine</option>
-                  </select>
-                </label>
-              </div>
-
-              <div class="three-column">
-                <label>
-                  Team readiness
-                  <select id="teamReadiness" name="teamReadiness">
-                    <option value="-2">Novice audience, no technical follow-up path</option>
-                    <option value="-1">Low technical readiness</option>
-                    <option value="0">Mixed team</option>
-                    <option value="1">Some specialist support</option>
-                    <option value="2">Strong technical team</option>
-                  </select>
-                </label>
-
-                <label>
-                  Candidate subproblem identified?
-                  <select id="candidateSubproblem" name="candidateSubproblem">
-                    <option value="yes">Yes, there is a narrow candidate subproblem</option>
-                    <option value="maybe">Maybe, but it still needs refinement</option>
-                    <option value="no">No, the workload is still broad</option>
-                  </select>
-                </label>
-
-                <label>
-                  Prototype scale
-                  <select id="prototypeScale" name="prototypeScale">
-                    <option value="toy">Toy or reduced example is acceptable</option>
-                    <option value="medium">Need a medium-scale pilot</option>
-                    <option value="full">Need production-scale relevance</option>
-                  </select>
-                </label>
-              </div>
-
-              <label>
-                Validation and caveats
-                <textarea
-                  id="validationNeeds"
-                  name="validationNeeds"
-                  rows="3"
-                  placeholder="Example: results must remain scientifically interpretable and easy to explain to stakeholders."
-                ></textarea>
-              </label>
-
-              <div class="form-actions">
-                <button type="submit" class="button primary">Run fit assessment</button>
-                <button type="button" class="button secondary" id="saveSessionButton">
-                  Save session
-                </button>
-              </div>
-            </form>
-
-            <section class="dashboard-grid">
-              <article class="result-card" id="fit-report">
-                <div class="card-heading">
-                  <div>
-                    <p class="eyebrow">Fit report</p>
-                    <h3 id="recommendationTitle">No recommendation yet</h3>
-                  </div>
-                  <div class="badge" id="recommendationBadge">Awaiting assessment</div>
-                </div>
-
-                <p id="recommendationSummary">
-                  Complete the intake to produce a disposition, rationale,
-                  assumptions, and next-step guidance.
-                </p>
-
-                <div class="score-row">
-                  <div class="metric-card">
-                    <span>Weighted total</span>
-                    <strong id="weightedTotal">0</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span>Confidence</span>
-                    <strong id="confidenceBand">Low</strong>
-                  </div>
-                  <div class="metric-card">
-                    <span>Completeness</span>
-                    <strong id="completenessMirror">0%</strong>
-                  </div>
-                </div>
-
-                <div class="meter rubric-meter">
-                  <div>
-                    <span>Classical baseline</span>
-                    <strong id="scoreClassicalBaseline">0</strong>
-                  </div>
-                  <div>
-                    <span>Problem structure</span>
-                    <strong id="scoreProblemStructure">0</strong>
-                  </div>
-                  <div>
-                    <span>Representation fit</span>
-                    <strong id="scoreRepresentationFit">0</strong>
-                  </div>
-                  <div>
-                    <span>Horizon fit</span>
-                    <strong id="scoreTimeHorizon">0</strong>
-                  </div>
-                  <div>
-                    <span>Verification tolerance</span>
-                    <strong id="scoreVerification">0</strong>
-                  </div>
-                  <div>
-                    <span>Team readiness</span>
-                    <strong id="scoreTeamReadiness">0</strong>
-                  </div>
-                </div>
-
-                <div class="insight-grid">
-                  <div class="insight-block">
-                    <h4>Why this recommendation?</h4>
-                    <ul id="reasonList"></ul>
-                  </div>
-                  <div class="insight-block">
-                    <h4>Assumptions</h4>
-                    <ul id="assumptionList"></ul>
-                  </div>
-                  <div class="insight-block">
-                    <h4>What could change the outcome?</h4>
-                    <ul id="changeList"></ul>
-                  </div>
-                  <div class="insight-block">
-                    <h4>Suggested next step</h4>
-                    <p id="nextStep">
-                      Start with the real workload, then use this product to
-                      create a credible next action rather than a generic quantum
-                      pitch.
-                    </p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="result-card">
-                <div class="card-heading">
-                  <div>
-                    <p class="eyebrow">Builder insight</p>
-                    <h3>Explanation rail</h3>
-                  </div>
-                  <span class="pill" id="modePill">Executive</span>
-                </div>
-
-                <div class="insight-block">
-                  <h4>Plain-English explanation</h4>
-                  <p id="noviceExplanation">
-                    Quantum computers are not general-purpose faster computers.
-                    The honest question is whether a narrow, structured
-                    subproblem deserves exploration.
-                  </p>
-                </div>
-
-                <div class="insight-block builder-only">
-                  <h4>Rule trace</h4>
-                  <p id="ruleTrace">
-                    Builder mode reveals the deterministic rubric, gating rules,
-                    and prototype template mapping.
-                  </p>
-                </div>
-
-                <div class="insight-block">
-                  <h4>Caveat</h4>
-                  <p id="caveatText">
-                    This tool does not prove quantum advantage. It helps you
-                    decide whether the workload is classical-only, educational,
-                    prototype-worthy, or long-term.
-                  </p>
-                </div>
-              </article>
-            </section>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel" id="workflow-canvas">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Hybrid canvas</p>
-            <h2>Show the split between classical and quantum work</h2>
-          </div>
-          <p class="panel-note">
-            The most honest architecture usually keeps most of the workflow
-            classical and isolates only a narrow quantum candidate lane.
-          </p>
-        </div>
-
-        <div class="lane-grid" id="laneGrid"></div>
-      </section>
-
-      <section class="panel" id="prototype-studio">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Prototype studio</p>
-            <h2>Generate artifacts that survive a customer meeting</h2>
-          </div>
-          <p class="panel-note">
-            Templates are grounded and conservative: chemistry notebook,
-            optimization notebook, or architecture summary.
-          </p>
-        </div>
-
-        <div class="prototype-layout">
-          <div class="prototype-templates" id="templateGrid"></div>
-          <article class="result-card">
-            <div class="card-heading">
-              <div>
-                <p class="eyebrow">Artifact preview</p>
-                <h3 id="prototypeTitle">No prototype generated yet</h3>
-              </div>
-              <button class="button primary compact" id="generatePrototypeButton" type="button">
-                Generate artifact
-              </button>
             </div>
-            <p id="prototypeSummary">
-              After an assessment, this section generates a notebook outline or
-              architecture-ready brief matched to the current use case.
-            </p>
-            <pre class="artifact-preview" id="prototypePreview">Select a scenario and run the fit assessment first.</pre>
-          </article>
-        </div>
+          </div>
+        </article>
       </section>
 
-      <section class="panel">
+      <section class="panel explanation-panel">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Future-state estimate</p>
-            <h2>Keep “prototype now” separate from “useful later”</h2>
+            <p class="eyebrow">Step 3</p>
+            <h2>Learn just enough to act</h2>
           </div>
-          <p class="panel-note">
-            This view helps explain when the interesting version of the problem
-            depends on fault-tolerant hardware rather than current simulators.
-          </p>
         </div>
 
-        <div class="estimate-grid">
-          <article class="estimate-card">
-            <span class="summary-label">Prototype now</span>
-            <h3 id="prototypeNowTitle">No immediate path yet</h3>
-            <p id="prototypeNowCopy">
-              Hybrid prototype candidates appear here after assessment.
+        <div class="explanation-grid">
+          <article class="mini-card">
+            <span class="mini-label">In plain English</span>
+            <p id="simpleExplanation">
+              Quantum computers are not general-purpose faster computers. They
+              are useful only for certain kinds of problems.
             </p>
           </article>
-          <article class="estimate-card">
-            <span class="summary-label">Future path</span>
-            <h3 id="futureStateTitle">No future-state path yet</h3>
-            <p id="futureStateCopy">
-              Long-term candidate workloads will show resource-estimation style
-              guidance here.
+          <article class="mini-card">
+            <span class="mini-label">What stays classical</span>
+            <p id="classicalExplanation">
+              In most real situations, the main workflow still stays on regular
+              computers.
             </p>
           </article>
-          <article class="estimate-card">
-            <span class="summary-label">Trust note</span>
-            <h3>What this does not claim</h3>
-            <p id="trustNote">
-              The app does not promise that a generated prototype proves
-              production quantum value.
+          <article class="mini-card">
+            <span class="mini-label">If you explore quantum later</span>
+            <p id="laterExplanation">
+              Start with a small pilot or a learning exercise. Do not assume the
+              whole system moves to quantum.
             </p>
           </article>
         </div>
       </section>
 
-      <section class="panel" id="exports">
+      <section class="panel examples-panel" id="examples">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Exports</p>
-            <h2>Package the session for follow-up</h2>
+            <p class="eyebrow">Examples</p>
+            <h2>Common beginner scenarios</h2>
           </div>
-          <p class="panel-note">
-            Export a customer brief, architecture summary, or JSON bundle for
-            later refinement.
-          </p>
         </div>
 
-        <div class="prototype-layout">
-          <article class="result-card">
-            <div class="card-heading">
-              <div>
-                <p class="eyebrow">Executive brief</p>
-                <h3>Preview</h3>
-              </div>
-              <div class="button-row">
-                <button class="button secondary compact" type="button" id="downloadMarkdownButton">
-                  Download brief
-                </button>
-                <button class="button secondary compact" type="button" id="downloadJsonButton">
-                  Download JSON
-                </button>
-              </div>
-            </div>
-            <pre class="artifact-preview" id="exportPreview">Run an assessment to generate the export brief.</pre>
-          </article>
+        <div class="example-grid" id="exampleGrid"></div>
+      </section>
 
-          <div class="glossary-grid" id="glossaryGrid"></div>
+      <section class="panel glossary-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Quick glossary</p>
+            <h2>Only the terms you need right now</h2>
+          </div>
         </div>
+
+        <div class="glossary-grid" id="glossaryGrid"></div>
       </section>
     </main>
 

@@ -1,31 +1,26 @@
-# Quantum Fit Explorer
+# Quantum Explorer
 
-Quantum Fit Explorer is a lightweight MVP that helps a novice user understand
-when to use classical computing, hybrid approaches, or quantum computing.
+Quantum Explorer is a beginner-first web app that helps business users
+understand when a problem should stay classical, when a small hybrid pilot may
+be worth exploring, and when quantum is more of a long-term opportunity.
 
-This repository now also contains a build-ready engineering package for the
-next version of the app: the `Hybrid Quantum Workload Navigator`.
+## What the app includes
 
-## What this prototype includes
+- A short guided questionnaire
+- One plain-English recommendation
+- Simple explanation of why that answer was chosen
+- Beginner-friendly examples and glossary
 
-- Guided assessment for a problem statement
-- Explainable scoring across classical, hybrid, and quantum fit
-- Example scenarios that teach the nuance
-- Beginner glossary for key concepts
+## Product direction
 
-## Build-ready docs
+The current live app is intentionally simple and aimed at non-technical users.
+The repository also includes a deeper engineering package for a future version
+of the product:
 
 - [Local MVP blueprint](docs/local-mvp-blueprint.md)
 - [API and data model](docs/api-and-data-model.md)
 - [Fit-assessment rubric](docs/fit-assessment-rubric.md)
 - [Build plan](docs/build-plan.md)
-
-These documents translate the PRD, user guide, and architecture notes into:
-
-- concrete local architecture choices
-- API contracts and persistence model
-- deterministic recommendation logic
-- milestone order for a local MVP before any GCP work
 
 ## Run locally
 
@@ -38,13 +33,13 @@ This app has no build step.
 The app is intentionally opinionated:
 
 - Quantum is not treated as a general-purpose faster computer
-- Classical baselines are required before recommending quantum exploration
-- Hybrid workflows are presented as the most realistic bridge for many teams
+- Most business workflows should remain classical
+- A small hybrid pilot is usually more realistic than a full quantum story
+- The product explains, rather than oversells, where quantum may matter
 
 ## Good next steps
 
-- Reshape the repo into `apps/web` and `apps/api`
-- Implement the API and rubric from `docs/`
-- Build the local MVP before adding GCP infrastructure
-- Add LLM-assisted explanations only after deterministic flows are stable
-- Add expert-reviewed benchmark scenarios for evaluation
+- Keep improving the beginner experience and wording
+- Add a dedicated advanced mode later for technical users
+- Reshape the repo into `apps/web` and `apps/api` when the simplified UX is stable
+- Implement the future API and rubric from `docs/` after the product flow is validated
