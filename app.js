@@ -136,19 +136,53 @@ const circuitExamples = [
 
 const googlePathways = [
   {
+    badge: "Start here",
     title: "Cirq",
+    tag: "Python circuits",
     detail:
-      "Use Cirq when you are ready to turn a visual circuit into Python code and real circuit objects.",
+      "Turn the circuit you built here into real Python code and keep learning in Google's core circuit framework.",
+    when:
+      "Use this first when you want to move from clicking gates to writing, editing, and simulating circuits in notebooks or scripts.",
+    nextMove:
+      "Copy the Cirq preview from this page and run it in a notebook or Colab so the same circuit becomes real code.",
+    link: "https://quantumai.google/cirq",
   },
   {
+    badge: "Then",
     title: "qsim",
+    tag: "Faster simulation",
     detail:
-      "Use qsim when you want stronger simulation performance and a path toward larger experiments.",
+      "Keep the same circuit mindset, but use a stronger simulator when you want to explore larger or more demanding experiments.",
+    when:
+      "Use qsim after Cirq when the built-in simulator starts to feel limiting or you want a more performance-focused simulation path.",
+    nextMove:
+      "Take a circuit you already understand in Cirq and rerun it with qsim before you change the problem itself.",
+    link: "https://quantumai.google/qsim",
   },
   {
+    badge: "Branch",
     title: "OpenFermion",
+    tag: "Chemistry and materials",
     detail:
-      "Use OpenFermion when your curiosity shifts from gates to chemistry and materials problems.",
+      "Shift from toy circuits into chemistry-style problems where you care about molecules, materials, and fermionic models.",
+    when:
+      "Use this when your interest is less about gates and more about modeling a chemistry or materials problem for a quantum workflow.",
+    nextMove:
+      "Start with a tiny chemistry example so you learn the mapping before worrying about larger scientific claims.",
+    link: "https://quantumai.google/openfermion",
+  },
+  {
+    badge: "Later",
+    title: "Quantum Engine API",
+    tag: "Service access",
+    detail:
+      "This is the Google service layer for executing circuits on Google's backends, but it is not where a beginner should start.",
+    when:
+      "Think about this only after you are comfortable with Cirq and you have a real reason to move beyond local simulation.",
+    nextMove:
+      "Treat this as a future step. Public access is not open, so keep learning and validating ideas with simulators first.",
+    link: "https://quantumai.google/cirq/google/engine",
+    caution: "Not open for public access today.",
   },
 ];
 
@@ -648,8 +682,28 @@ function renderGooglePathways() {
     const article = document.createElement("article");
     article.className = "google-card";
     article.innerHTML = `
-      <span>${path.title}</span>
+      <div class="google-card-top">
+        <span class="google-badge">${path.badge}</span>
+        <span class="google-tag">${path.tag}</span>
+      </div>
+      <h3>${path.title}</h3>
       <p>${path.detail}</p>
+      <div class="google-meta">
+        <strong>Best when</strong>
+        <p>${path.when}</p>
+      </div>
+      <div class="google-meta">
+        <strong>Next move</strong>
+        <p>${path.nextMove}</p>
+      </div>
+      ${
+        path.caution
+          ? `<p class="google-warning">${path.caution}</p>`
+          : ""
+      }
+      <a class="google-link" href="${path.link}" target="_blank" rel="noreferrer">
+        Open official docs
+      </a>
     `;
     els.googlePathGrid.appendChild(article);
   });

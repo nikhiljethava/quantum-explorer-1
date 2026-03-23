@@ -251,6 +251,29 @@ h2 {
   min-height: 100%;
 }
 
+.google-panel .panel-header {
+  align-items: start;
+}
+
+.google-reality {
+  margin-top: 0.4rem;
+  padding: 1rem;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(125, 207, 255, 0.12), rgba(86, 227, 159, 0.08));
+  border: 1px solid rgba(125, 207, 255, 0.18);
+}
+
+.google-reality h3 {
+  margin-top: 0.15rem;
+  font-size: 1.1rem;
+}
+
+.google-reality p {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  max-width: 54rem;
+}
+
 .tool-column,
 .builder-column,
 .output-column {
@@ -310,14 +333,12 @@ h2 {
 .example-button small,
 .gate-button small,
 .business-card span,
-.operator-card span,
-.google-card span {
+.operator-card span {
   display: block;
 }
 
 .example-button span,
-.business-card span,
-.google-card span {
+.business-card span {
   color: var(--accent-3);
   font-size: 0.78rem;
   margin-bottom: 0.45rem;
@@ -559,6 +580,87 @@ h2 {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.84rem;
   line-height: 1.5;
+}
+
+.google-grid {
+  margin-top: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.google-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.google-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.google-badge,
+.google-tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.32rem 0.65rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+}
+
+.google-badge {
+  background: rgba(86, 227, 159, 0.14);
+  border: 1px solid rgba(86, 227, 159, 0.28);
+  color: var(--accent);
+}
+
+.google-tag {
+  background: rgba(125, 207, 255, 0.12);
+  border: 1px solid rgba(125, 207, 255, 0.22);
+  color: var(--accent-3);
+}
+
+.google-card h3 {
+  font-size: 1.15rem;
+}
+
+.google-meta {
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.google-meta strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.google-meta p,
+.google-card p {
+  margin: 0;
+}
+
+.google-warning {
+  padding: 0.7rem 0.8rem;
+  border-radius: 16px;
+  background: rgba(247, 178, 103, 0.12);
+  border: 1px solid rgba(247, 178, 103, 0.22);
+  color: #ffd7aa;
+}
+
+.google-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 40px;
+  padding: 0.7rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  text-decoration: none;
 }
 
 @media (max-width: 1200px) {
