@@ -82,21 +82,6 @@
         <div class="concept-grid" id="conceptGrid"></div>
       </section>
 
-      <section class="panel operator-panel">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Basic operators</p>
-            <h2>Learn the small set you need first</h2>
-          </div>
-          <p class="panel-note">
-            The playground starts with five basics: H, X, Z, CNOT, and
-            measurement.
-          </p>
-        </div>
-
-        <div class="operator-grid" id="operatorGrid"></div>
-      </section>
-
       <section class="panel playground-panel" id="playground">
         <div class="panel-header">
           <div>
@@ -109,21 +94,24 @@
           </p>
         </div>
 
+        <article class="playground-examples">
+          <div class="playground-examples-header">
+            <div>
+              <span class="mini-label">Examples</span>
+              <h3>Load a common circuit first</h3>
+            </div>
+            <p class="helper-copy">
+              Click any example to open its circuit in the editor below.
+            </p>
+          </div>
+          <div class="circuit-example-grid top-example-grid" id="circuitExampleGrid"></div>
+        </article>
+
         <div class="playground-layout">
           <aside class="tool-column">
             <article class="tool-card">
-              <span class="mini-label">Circuit examples</span>
-              <h3>Start from something real</h3>
-              <p class="helper-copy">
-                Each example includes a plain-language idea first, then the
-                circuit.
-              </p>
-              <div class="circuit-example-grid" id="circuitExampleGrid"></div>
-            </article>
-
-            <article class="tool-card">
-              <span class="mini-label">Operator palette</span>
-              <h3>Pick a tool, then click the circuit</h3>
+              <span class="mini-label">Operator panel</span>
+              <h3>Pick a gate</h3>
               <div class="gate-palette" id="gatePalette"></div>
               <p class="selected-gate-copy">
                 Selected: <strong id="selectedGateName">Hadamard</strong>
@@ -132,6 +120,7 @@
                 Measurement is kept at the end in this beginner version so the
                 results stay easier to understand.
               </p>
+              <div class="operator-grid operator-side-grid" id="operatorGrid"></div>
             </article>
 
             <article class="tool-card tool-actions">
@@ -148,8 +137,8 @@
             <article class="builder-card">
               <div class="builder-header">
                 <div>
-                  <span class="mini-label">Visual editor</span>
-                  <h3>2-qubit circuit canvas</h3>
+                  <span class="mini-label">Circuit visualization</span>
+                  <h3>2-qubit circuit editor</h3>
                 </div>
                 <p class="builder-copy">
                   Click a cell to place the currently selected operator. CNOT

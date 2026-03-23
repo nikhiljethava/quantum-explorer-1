@@ -120,7 +120,7 @@ const circuitExamples = [
   },
   {
     key: "phaseflip",
-    title: "Phase trick",
+    title: "Interference",
     subtitle: "See how phase becomes visible once Hadamard is involved.",
     build: () => {
       const grid = createEmptyGrid();
@@ -489,8 +489,9 @@ function renderCircuitExamples() {
     button.type = "button";
     button.className = "example-button";
     button.innerHTML = `
-      <span>${example.title}</span>
-      <strong>${example.subtitle}</strong>
+      <span>Common example</span>
+      <strong>${example.title}</strong>
+      <small>${example.subtitle}</small>
     `;
     button.addEventListener("click", () => {
       circuitGrid = example.build();
@@ -715,5 +716,5 @@ renderConcepts();
 renderOperators();
 renderCircuitExamples();
 renderGooglePathways();
-circuitGrid = circuitExamples[1].build();
+circuitGrid = circuitExamples[0].build();
 renderAll();
