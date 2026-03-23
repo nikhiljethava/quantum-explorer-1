@@ -67,6 +67,21 @@
         <div class="business-grid" id="businessExampleGrid"></div>
       </section>
 
+      <section class="panel concept-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Key ideas first</p>
+            <h2>See the terms before you meet them in the editor</h2>
+          </div>
+          <p class="panel-note">
+            The playground should introduce the language gently, not assume you
+            already know it.
+          </p>
+        </div>
+
+        <div class="concept-grid" id="conceptGrid"></div>
+      </section>
+
       <section class="panel operator-panel">
         <div class="panel-header">
           <div>
@@ -74,7 +89,7 @@
             <h2>Learn the small set you need first</h2>
           </div>
           <p class="panel-note">
-            The playground starts with five basics: `H`, `X`, `Z`, `CNOT`, and
+            The playground starts with five basics: H, X, Z, CNOT, and
             measurement.
           </p>
         </div>
@@ -99,6 +114,10 @@
             <article class="tool-card">
               <span class="mini-label">Circuit examples</span>
               <h3>Start from something real</h3>
+              <p class="helper-copy">
+                Each example includes a plain-language idea first, then the
+                circuit.
+              </p>
               <div class="circuit-example-grid" id="circuitExampleGrid"></div>
             </article>
 
@@ -108,6 +127,10 @@
               <div class="gate-palette" id="gatePalette"></div>
               <p class="selected-gate-copy">
                 Selected: <strong id="selectedGateName">Hadamard</strong>
+              </p>
+              <p class="helper-copy">
+                Measurement is kept at the end in this beginner version so the
+                results stay easier to understand.
               </p>
             </article>
 
@@ -129,7 +152,9 @@
                   <h3>2-qubit circuit canvas</h3>
                 </div>
                 <p class="builder-copy">
-                  Click a cell to place the currently selected operator.
+                  Click a cell to place the currently selected operator. CNOT
+                  links the two qubits, and measurement is treated as the last
+                  step.
                 </p>
               </div>
               <div class="circuit-grid" id="circuitGrid"></div>

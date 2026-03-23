@@ -23,6 +23,29 @@ const businessExamples = [
   },
 ];
 
+const coreConcepts = [
+  {
+    title: "Superposition",
+    detail:
+      "A qubit can be in a mix of 0 and 1 until you measure it. That is why a single Hadamard gate can create two possible outcomes.",
+  },
+  {
+    title: "Bell state",
+    detail:
+      "A Bell state is a simple two-qubit entangled state. It is a beginner-friendly way to see two qubits become linked.",
+  },
+  {
+    title: "Measurement",
+    detail:
+      "Measurement turns the quantum state into a classical answer like 00, 01, 10, or 11. In this playground, measurement is treated as the final step.",
+  },
+  {
+    title: "Circuit",
+    detail:
+      "A quantum circuit is just a sequence of operators applied over time. You can think of it like a visual recipe for the qubits.",
+  },
+];
+
 const operators = [
   {
     key: "H",
@@ -60,7 +83,7 @@ const circuitExamples = [
   {
     key: "superposition",
     title: "Superposition",
-    subtitle: "See one qubit split into two possible outcomes.",
+    subtitle: "One qubit spreads across two likely outcomes.",
     build: () => {
       const grid = createEmptyGrid();
       grid[0][0] = "H";
@@ -72,7 +95,7 @@ const circuitExamples = [
   {
     key: "bell",
     title: "Bell state",
-    subtitle: "Watch H + CNOT create a simple entanglement pattern.",
+    subtitle: "A first entanglement example: two qubits start behaving together.",
     build: () => {
       const grid = createEmptyGrid();
       grid[0][0] = "H";
@@ -137,6 +160,7 @@ let inspectStep = NUM_STEPS;
 
 const els = {
   businessExampleGrid: document.getElementById("businessExampleGrid"),
+  conceptGrid: document.getElementById("conceptGrid"),
   operatorGrid: document.getElementById("operatorGrid"),
   circuitExampleGrid: document.getElementById("circuitExampleGrid"),
   gatePalette: document.getElementById("gatePalette"),
@@ -400,6 +424,20 @@ function renderBusinessExamples() {
   });
 }
 
+function renderConcepts() {
+  els.conceptGrid.innerHTML = "";
+
+  coreConcepts.forEach((concept) => {
+    const article = document.createElement("article");
+    article.className = "business-card";
+    article.innerHTML = `
+      <span>${concept.title}</span>
+      <p>${concept.detail}</p>
+    `;
+    els.conceptGrid.appendChild(article);
+  });
+}
+
 function renderOperators() {
   els.operatorGrid.innerHTML = "";
 
@@ -479,6 +517,14 @@ function placeGate(row, column) {
   if (selectedGate === "CNOT") {
     circuitGrid[0][column] = "CONTROL";
     circuitGrid[1][column] = "TARGET";
+    renderAll();
+    return;
+  }
+
+  if (selectedGate === "M") {
+    const measurementColumn = NUM_STEPS - 1;
+    clearColumnIfCnot(measurementColumn);
+    circuitGrid[row][measurementColumn] = "M";
     renderAll();
     return;
   }
@@ -596,22 +642,35 @@ els.clearCircuitButton.addEventListener("click", () => {
 els.copyCodeButton.addEventListener("click", async () => {
   const code = buildCirqCode(circuitGrid);
 
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    await navigator.clipboard.writeText(code);
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(code);
+    } else {
+      const textArea = document.createElement("textarea");
+      textArea.value = code;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "absolute";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+    }
+
     els.copyCodeButton.textContent = "Copied";
     setTimeout(() => {
       els.copyCodeButton.textContent = "Copy Cirq code";
     }, 1200);
-    return;
+  } catch (error) {
+    els.copyCodeButton.textContent = "Copy failed";
+    setTimeout(() => {
+      els.copyCodeButton.textContent = "Copy Cirq code";
+    }, 1400);
   }
-
-  els.copyCodeButton.textContent = "Copy not supported";
-  setTimeout(() => {
-    els.copyCodeButton.textContent = "Copy Cirq code";
-  }, 1200);
 });
 
 renderBusinessExamples();
+renderConcepts();
 renderOperators();
 renderCircuitExamples();
 renderGooglePathways();

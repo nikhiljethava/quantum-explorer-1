@@ -180,6 +180,7 @@ h2 {
 
 .intro-grid,
 .business-grid,
+.concept-grid,
 .operator-grid,
 .playground-layout,
 .circuit-example-grid,
@@ -194,6 +195,7 @@ h2 {
 }
 
 .business-grid,
+.concept-grid,
 .operator-grid,
 .google-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -233,6 +235,12 @@ h2 {
 .tool-actions {
   gap: 0.9rem;
   display: grid;
+}
+
+.helper-copy {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .selected-gate-copy {
@@ -461,6 +469,7 @@ h2 {
 @media (max-width: 1080px) {
   .playground-layout,
   .business-grid,
+  .concept-grid,
   .operator-grid,
   .google-grid {
     grid-template-columns: 1fr;
