@@ -333,7 +333,35 @@ function buildStepLabel(step) {
     return "Showing the final result after all steps.";
   }
 
-  return `Showing the state after step ${step}.`;
+  const operation = describeColumn(step - 1);
+  return `Showing the state after step ${step}: ${operation}.`;
+}
+
+function describeColumn(column) {
+  const topGate = circuitGrid[0][column];
+  const bottomGate = circuitGrid[1][column];
+  const labels = [];
+
+  const labelMap = {
+    H: "Hadamard on",
+    X: "Bit flip on",
+    Z: "Phase flip on",
+    M: "Measurement on",
+  };
+
+  if (topGate === "CONTROL" && bottomGate === "TARGET") {
+    return "CNOT linking q0 to q1";
+  }
+
+  if (topGate && labelMap[topGate]) {
+    labels.push(`${labelMap[topGate]} q0`);
+  }
+
+  if (bottomGate && labelMap[bottomGate]) {
+    labels.push(`${labelMap[bottomGate]} q1`);
+  }
+
+  return labels.length ? labels.join(" and ") : "no gate on this step";
 }
 
 function buildCirqCode(grid) {
@@ -559,7 +587,14 @@ function renderCircuitBoard() {
     for (let column = 0; column < NUM_STEPS; column += 1) {
       const button = document.createElement("button");
       button.type = "button";
+      const gate = circuitGrid[row][column];
       button.className = "gate-cell";
+      if (gate === "CONTROL") {
+        button.classList.add("cnot-top");
+      }
+      if (gate === "TARGET") {
+        button.classList.add("cnot-bottom");
+      }
       button.innerHTML = tokenMarkup(circuitGrid[row][column]);
       button.addEventListener("click", () => placeGate(row, column));
       board.appendChild(button);
@@ -573,23 +608,29 @@ function renderCircuitBoard() {
 function renderProbabilities() {
   const simulation = simulateCircuit(circuitGrid, inspectStep);
   const explanation = describeProbabilities(simulation.probabilities);
+  const dominant = simulation.probabilities.reduce((best, item) => {
+    return item.value > best.value ? item : best;
+  });
 
   els.inspectSlider.value = String(inspectStep);
   els.inspectLabel.textContent = buildStepLabel(inspectStep);
   els.outputTitle.textContent =
-    inspectStep === NUM_STEPS ? "Final circuit result" : `Circuit state after step ${inspectStep}`;
+    inspectStep === NUM_STEPS
+      ? "Possible measurement results"
+      : `Possible results after step ${inspectStep}`;
   els.outputExplanation.textContent = explanation;
 
   els.probabilityBars.innerHTML = "";
   simulation.probabilities.forEach((entry) => {
     const row = document.createElement("div");
-    row.className = "bar-row";
+    row.className = `bar-row ${entry.label === dominant.label ? "active-outcome" : ""}`;
     row.innerHTML = `
       <span>${entry.label}</span>
+      <strong>${formatPercent(entry.value)}</strong>
       <div class="bar-track">
         <div class="bar-fill" style="width: ${entry.value * 100}%"></div>
       </div>
-      <span>${formatPercent(entry.value)}</span>
+      <span>${entry.label === dominant.label ? "Most likely" : "Possible result"}</span>
     `;
     els.probabilityBars.appendChild(row);
   });

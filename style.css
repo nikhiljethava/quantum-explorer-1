@@ -202,7 +202,7 @@ h2 {
 }
 
 .playground-layout {
-  grid-template-columns: 280px minmax(0, 1fr) 340px;
+  grid-template-columns: 280px minmax(0, 1fr);
   align-items: start;
 }
 
@@ -230,6 +230,20 @@ h2 {
 .output-column {
   display: grid;
   gap: 1rem;
+}
+
+.tool-column {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.builder-column,
+.output-column {
+  grid-column: 2;
+}
+
+.output-column {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .tool-actions {
@@ -364,6 +378,24 @@ h2 {
   cursor: pointer;
 }
 
+.gate-cell.cnot-top::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: rgba(247, 178, 103, 0.8);
+  bottom: -20px;
+}
+
+.gate-cell.cnot-bottom::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: rgba(247, 178, 103, 0.8);
+  top: -20px;
+}
+
 .gate-token {
   display: grid;
   place-items: center;
@@ -422,20 +454,28 @@ h2 {
 
 .probability-bars {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.9rem;
   margin-top: 1rem;
 }
 
 .bar-row {
   display: grid;
-  grid-template-columns: 56px 1fr 54px;
   gap: 0.8rem;
-  align-items: center;
+  align-items: start;
+  padding: 0.95rem;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .bar-row span {
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.bar-row strong {
+  font-size: 1.6rem;
 }
 
 .bar-track {
@@ -451,10 +491,15 @@ h2 {
   background: linear-gradient(90deg, var(--accent), var(--accent-3));
 }
 
+.bar-row.active-outcome {
+  border-color: rgba(86, 227, 159, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(86, 227, 159, 0.14);
+}
+
 .code-preview {
   margin: 1rem 0;
   padding: 1rem;
-  min-height: 280px;
+  min-height: 220px;
   border-radius: 18px;
   background: var(--panel-strong);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -467,11 +512,25 @@ h2 {
 }
 
 @media (max-width: 1080px) {
-  .playground-layout,
   .business-grid,
   .concept-grid,
   .operator-grid,
   .google-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .playground-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-column,
+  .builder-column,
+  .output-column {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .output-column {
     grid-template-columns: 1fr;
   }
 }
