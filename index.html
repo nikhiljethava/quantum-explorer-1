@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quantum Explorer</title>
+    <title>Quantum Explorer Playground</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,222 +18,179 @@
 
     <main class="page">
       <header class="hero">
-        <p class="eyebrow">Quantum Explorer</p>
-        <h1>Understand when quantum computing matters and when it does not.</h1>
+        <p class="eyebrow">Google-Style Quantum Learning</p>
+        <h1>Learn quantum visually, then try a circuit yourself.</h1>
         <p class="hero-copy">
-          This version is built for business users and beginners. Answer a few
-          simple questions and get a plain-English recommendation.
+          This beginner-first playground borrows the best ideas from modern
+          quantum tools: simple onboarding, visual circuits, browser-based
+          experimentation, and a clear path toward Google's quantum stack.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#quiz">Start the guide</a>
-          <a class="button secondary" href="#examples">See examples</a>
+          <a class="button primary" href="#playground">Open the playground</a>
+          <a class="button secondary" href="#use-cases">See use cases</a>
         </div>
       </header>
 
       <section class="panel intro-panel">
-        <div class="mini-grid">
-          <article class="mini-card">
-            <span class="mini-label">What this helps with</span>
-            <h2>Should this problem stay classical, use a small hybrid pilot, or be watched as a long-term quantum opportunity?</h2>
-          </article>
-          <article class="mini-card">
-            <span class="mini-label">What this does not do</span>
+        <div class="intro-grid">
+          <article class="intro-card">
+            <span class="mini-label">Beginner first</span>
+            <h2>No physics background required.</h2>
             <p>
-              It does not try to be a technical design tool. It gives a beginner
-              a grounded first answer without jargon.
+              Start with a few basic operators, load examples, and see what a
+              circuit does without setting up a coding environment.
+            </p>
+          </article>
+          <article class="intro-card">
+            <span class="mini-label">Google path</span>
+            <p>
+              Once the concepts click, the next step is moving from this visual
+              editor into tools like Cirq for circuits, qsim for simulation, and
+              OpenFermion for chemistry-style problems.
             </p>
           </article>
         </div>
       </section>
 
-      <section class="panel examples-panel" id="examples">
+      <section class="panel use-case-panel" id="use-cases">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Examples first</p>
-            <h2>Start with a scenario that feels familiar</h2>
+            <p class="eyebrow">Examples it can help explain</p>
+            <h2>Where people explore quantum ideas today</h2>
           </div>
           <p class="panel-note">
-            If you are not sure how to describe your problem yet, begin with one
-            of these examples and adjust from there.
+            These are not promises. They are areas where quantum is often
+            discussed, studied, or prototyped.
           </p>
         </div>
 
-        <div class="example-grid" id="exampleGrid"></div>
+        <div class="business-grid" id="businessExampleGrid"></div>
       </section>
 
-      <section class="panel quiz-panel" id="quiz">
+      <section class="panel operator-panel">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Step 1</p>
-            <h2>Tell us about the problem</h2>
+            <p class="eyebrow">Basic operators</p>
+            <h2>Learn the small set you need first</h2>
           </div>
           <p class="panel-note">
-            Keep it simple. The app is trying to understand your business goal,
-            not test your quantum knowledge.
+            The playground starts with five basics: `H`, `X`, `Z`, `CNOT`, and
+            measurement.
           </p>
         </div>
 
-        <form id="assessment-form" class="simple-form">
-          <label>
-            What are you trying to do?
-            <textarea
-              id="businessGoal"
-              name="businessGoal"
-              rows="4"
-              placeholder="Example: We want to find better battery materials, improve delivery route planning, or understand whether a difficult simulation problem could benefit from quantum computing."
-            ></textarea>
-          </label>
-
-          <div class="two-column">
-            <label>
-              Which option sounds closest to your problem?
-              <select id="problemType" name="problemType">
-                <option value="materials">Chemistry, materials, or physical simulation</option>
-                <option value="optimization">Optimization, scheduling, or routing</option>
-                <option value="cryptography">Cryptography or security research</option>
-                <option value="analytics">AI, analytics, or messy business data</option>
-                <option value="general">General business software or process improvement</option>
-                <option value="unsure">I am not sure</option>
-              </select>
-            </label>
-
-            <label>
-              How well do current tools work today?
-              <select id="classicalFit" name="classicalFit">
-                <option value="strong">They work well enough already</option>
-                <option value="mixed">They work partly, but we still struggle</option>
-                <option value="weak">They struggle badly on the core problem</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="two-column">
-            <label>
-              When do you need value?
-              <select id="timeNeed" name="timeNeed">
-                <option value="now">We need practical value now</option>
-                <option value="pilot">A small pilot this year is fine</option>
-                <option value="later">This is a longer-term strategic bet</option>
-              </select>
-            </label>
-
-            <label>
-              Can you isolate a small part of the problem to test separately?
-              <select id="subproblem" name="subproblem">
-                <option value="yes">Yes</option>
-                <option value="maybe">Maybe</option>
-                <option value="no">No</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="form-actions">
-            <button class="button primary" type="submit">Show my recommendation</button>
-          </div>
-        </form>
+        <div class="operator-grid" id="operatorGrid"></div>
       </section>
 
-      <section class="panel result-panel" id="result">
+      <section class="panel playground-panel" id="playground">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Step 2</p>
-            <h2>Your recommendation</h2>
+            <p class="eyebrow">Playground</p>
+            <h2>Build a small circuit and see what changes</h2>
           </div>
+          <p class="panel-note">
+            Borrowing from Composer and Quirk, the editor stays visual first and
+            shows the Google-style code path second.
+          </p>
         </div>
 
-        <article class="result-card">
-          <div class="badge" id="recommendationBadge">Answer a few questions first</div>
-          <h3 id="recommendationTitle">No recommendation yet</h3>
-          <p id="recommendationSummary">
-            After you complete the guide, the app will give you one simple
-            answer and explain why.
-          </p>
+        <div class="playground-layout">
+          <aside class="tool-column">
+            <article class="tool-card">
+              <span class="mini-label">Circuit examples</span>
+              <h3>Start from something real</h3>
+              <div class="circuit-example-grid" id="circuitExampleGrid"></div>
+            </article>
 
-          <div class="visualization-card">
-            <div class="visualization-header">
-              <h4>Where this sits on the journey</h4>
-              <span id="visualizationLabel">Waiting for your answers</span>
-            </div>
-            <div class="journey-track" id="journeyTrack">
-              <div class="journey-step" data-step="classical">
-                <strong>1</strong>
-                <span>Stay classical</span>
-              </div>
-              <div class="journey-line"></div>
-              <div class="journey-step" data-step="learn">
-                <strong>2</strong>
-                <span>Learn more</span>
-              </div>
-              <div class="journey-line"></div>
-              <div class="journey-step" data-step="hybrid">
-                <strong>3</strong>
-                <span>Small hybrid pilot</span>
-              </div>
-              <div class="journey-line"></div>
-              <div class="journey-step" data-step="later">
-                <strong>4</strong>
-                <span>Long-term quantum watch</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="result-grid">
-            <div class="insight-block">
-              <h4>Why this answer?</h4>
-              <ul id="reasonList"></ul>
-            </div>
-            <div class="insight-block">
-              <h4>What should you do next?</h4>
-              <p id="nextStep">
-                Start with the short guide above.
+            <article class="tool-card">
+              <span class="mini-label">Operator palette</span>
+              <h3>Pick a tool, then click the circuit</h3>
+              <div class="gate-palette" id="gatePalette"></div>
+              <p class="selected-gate-copy">
+                Selected: <strong id="selectedGateName">Hadamard</strong>
               </p>
-            </div>
-          </div>
-        </article>
+            </article>
+
+            <article class="tool-card tool-actions">
+              <button class="button primary" id="runCircuitButton" type="button">
+                Run to final result
+              </button>
+              <button class="button secondary" id="clearCircuitButton" type="button">
+                Clear circuit
+              </button>
+            </article>
+          </aside>
+
+          <section class="builder-column">
+            <article class="builder-card">
+              <div class="builder-header">
+                <div>
+                  <span class="mini-label">Visual editor</span>
+                  <h3>2-qubit circuit canvas</h3>
+                </div>
+                <p class="builder-copy">
+                  Click a cell to place the currently selected operator.
+                </p>
+              </div>
+              <div class="circuit-grid" id="circuitGrid"></div>
+            </article>
+
+            <article class="builder-card">
+              <div class="builder-header">
+                <div>
+                  <span class="mini-label">Inspect mode</span>
+                  <h3>Step through the circuit</h3>
+                </div>
+                <p class="builder-copy" id="inspectLabel">
+                  Showing the final result after all steps.
+                </p>
+              </div>
+              <input
+                class="inspect-slider"
+                id="inspectSlider"
+                type="range"
+                min="0"
+                max="6"
+                value="6"
+              />
+            </article>
+          </section>
+
+          <aside class="output-column">
+            <article class="output-card">
+              <span class="mini-label">What happened?</span>
+              <h3 id="outputTitle">Current result</h3>
+              <p id="outputExplanation">
+                Build or load a circuit to see how the probabilities change.
+              </p>
+              <div class="probability-bars" id="probabilityBars"></div>
+            </article>
+
+            <article class="output-card">
+              <span class="mini-label">Google next step</span>
+              <h3>Cirq code preview</h3>
+              <p class="code-copy">
+                This keeps the visual editor tied to the code path you would use
+                next in Google's ecosystem.
+              </p>
+              <pre class="code-preview" id="cirqPreview"></pre>
+              <button class="button secondary" id="copyCodeButton" type="button">
+                Copy Cirq code
+              </button>
+            </article>
+          </aside>
+        </div>
       </section>
 
-      <section class="panel explanation-panel">
+      <section class="panel google-panel">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Step 3</p>
-            <h2>Learn just enough to act</h2>
+            <p class="eyebrow">Where to go next</p>
+            <h2>Move from learning to Google's real tools</h2>
           </div>
         </div>
 
-        <div class="explanation-grid">
-          <article class="mini-card">
-            <span class="mini-label">In plain English</span>
-            <p id="simpleExplanation">
-              Quantum computers are not general-purpose faster computers. They
-              are useful only for certain kinds of problems.
-            </p>
-          </article>
-          <article class="mini-card">
-            <span class="mini-label">What stays classical</span>
-            <p id="classicalExplanation">
-              In most real situations, the main workflow still stays on regular
-              computers.
-            </p>
-          </article>
-          <article class="mini-card">
-            <span class="mini-label">If you explore quantum later</span>
-            <p id="laterExplanation">
-              Start with a small pilot or a learning exercise. Do not assume the
-              whole system moves to quantum.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="panel glossary-panel">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Quick glossary</p>
-            <h2>Only the terms you need right now</h2>
-          </div>
-        </div>
-
-        <div class="glossary-grid" id="glossaryGrid"></div>
+        <div class="google-grid" id="googlePathGrid"></div>
       </section>
     </main>
 
