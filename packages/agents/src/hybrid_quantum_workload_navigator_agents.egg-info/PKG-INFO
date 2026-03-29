@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: hybrid-quantum-workload-navigator-agents
+Version: 0.1.0
+Summary: Shared agent contracts and orchestration for Hybrid Quantum Workload Navigator.
+Requires-Python: >=3.9

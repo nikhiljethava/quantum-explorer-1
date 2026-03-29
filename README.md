@@ -1,53 +1,128 @@
-# Quantum Explorer Playground
+# Hybrid Quantum Workload Navigator
 
-Quantum Explorer Playground is a beginner-first web app that helps non-technical
-users learn core quantum ideas visually, try simple circuits in the browser,
-and see a Google-style path toward tools like Cirq, qsim, and OpenFermion.
+Hybrid Quantum Workload Navigator is a local-first, cloud-ready monorepo for
+assessing candidate workloads, proposing hybrid classical/quantum decompositions,
+explaining the tradeoffs for different audiences, and generating prototype
+artifacts through a background worker.
 
-## What the app includes
+The product interface is a custom Next.js web app. Google ADK is reserved for
+agent orchestration and the optional local-only `agent_lab`.
 
-- Beginner-friendly use-case examples
-- Basic quantum operators explained in plain language
-- A visual 2-qubit circuit editor
-- Interactive circuit examples like superposition and Bell state
-- Probability bars for circuit output
-- A Cirq code preview tied to the visual editor
+## Repository layout
 
-## Product direction
+```text
+.
+├── apps
+│   ├── agent_lab
+│   ├── api
+│   └── web
+├── archive
+│   └── playground
+├── data
+│   └── artifacts
+├── docs
+│   ├── architecture
+│   └── corpus
+├── infra
+│   └── terraform
+└── packages
+    └── agents
+```
 
-The live app is intentionally beginner-first. It borrows inspiration from:
+## Local run with Docker Compose
 
-- Black Opal style onboarding
-- IBM Composer style visual circuits
-- Quirk style immediate browser interaction
-- Microsoft style browser playground
+1. Copy the environment template.
 
-This repository also includes a deeper engineering package for a future version
-of the product:
+```bash
+cp .env.example .env
+```
 
-- [Local MVP blueprint](docs/local-mvp-blueprint.md)
-- [API and data model](docs/api-and-data-model.md)
-- [Fit-assessment rubric](docs/fit-assessment-rubric.md)
-- [Build plan](docs/build-plan.md)
+2. Start the full local stack.
 
-## Run locally
+```bash
+./scripts/docker compose up --build
+```
 
-This app has no build step.
+3. Open the product UI at [http://localhost:3000](http://localhost:3000).
 
-1. Open `/Users/nikhiljethava/Documents/Codex/index.html` in a browser.
+4. Open the API docs at [http://localhost:8000/docs](http://localhost:8000/docs).
 
-## Product framing
+If you already have global Docker CLI symlinks on your machine, plain
+`docker compose up --build` works too. The bundled wrappers under `scripts/`
+exist so this repo stays runnable even when Docker Desktop is installed without
+privileged CLI linking.
 
-The app is intentionally opinionated:
+## Manual local run
 
-- Quantum is not treated as a general-purpose faster computer
-- Learning should start visually, not with code
-- The app uses a small number of operators first, then reveals more depth later
-- Google's toolchain is the next step after intuition, not the starting point
+### API
 
-## Good next steps
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e packages/agents -e apps/api
+PYTHONPATH=apps/api:packages/agents/src \
+uvicorn app.main:app --app-dir apps/api --reload --port 8000
+```
 
-- Keep improving the beginner learning flow and visual explanations
-- Add a stronger inspect mode and more example circuits
-- Add a dedicated advanced mode later for technical users
-- Reshape the repo into `apps/web` and `apps/api` when the playground UX is stable
+### Worker
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=apps/api:packages/agents/src \
+python3 -m app.worker.main --once
+```
+
+### Web
+
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+
+## Sample flows
+
+- Battery materials screening
+- Molecule simulation and chemistry planning
+- Portfolio and routing optimization
+
+The API seeds sample projects and workloads on startup so the UI can show an
+immediate happy path.
+
+## Agent debugging
+
+The product UI does not use ADK Web. For local debugging only:
+
+```bash
+source .venv/bin/activate
+pip install google-adk
+PYTHONPATH=packages/agents/src python3 apps/agent_lab/main.py
+adk web
+```
+
+`apps/agent_lab` points at the same shared agent package used by the API.
+
+## Current stage
+
+This repository currently covers the initial scaffold requested by the
+instruction pack:
+
+- monorepo structure
+- FastAPI backend shell
+- separate worker process shell
+- shared agent package with typed contracts
+- Next.js frontend shell
+- local corpus retrieval abstraction
+- filesystem artifact storage abstraction
+- seeded demo workloads
+- first end-to-end happy-path test scaffold
+
+## Known limitations in this scaffold
+
+- Google ADK integration is optional and guarded because the dependency is not
+  assumed to be installed everywhere.
+- qsim, Cirq, OpenFermion, and Qualtran adapters are scaffolded with explicit
+  capability checks and toy fallback metadata rather than full execution.
+- The machine used for this scaffold does not currently have Python web
+  dependencies or Node installed, so the code is structured and documented but
+  not fully executed here end to end.
